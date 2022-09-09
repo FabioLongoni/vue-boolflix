@@ -1,21 +1,48 @@
 <template>
   <div id="app">
-    <HeaderComponent/>
-    <MainComponent/>
+    <ul>
+      <li v-for="movie in movies" :key="movie.id">
+        {{ movie.original_title }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
 
-import HeaderComponent from './components/HeaderComponent.vue';
-import MainComponent from './components/MainComponent.vue';
+
+import axios from 'axios';
 
 export default {
   name: 'App',
   components: {
-    HeaderComponent,
-    MainComponent
-}
+    
+  },
+  data() {
+    return {
+      movies: [],
+      api_key: 'ab0c47b7b4ecf2838075c86d8541abac',
+      api_URL: 'https://api.themoviedb.org/3',
+      query: 'ritorno'
+    }
+  },
+  methods: {
+    getMovies() {
+      axios.get(`${this.api_URL}/search/movie?`,{
+        params: {
+          api_key: this.api_key,
+          query: this.query
+        }
+      })
+      .then((res) => {
+        console.log(res);
+        this.movies = res.data.results;
+      })
+    },
+    beforeMount() {
+      this.getMovies
+    },
+  }
 }
 </script>
 
