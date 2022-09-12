@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HeaderComponents @onResponse="filteredProgram"/>
+    <HeaderComponents @onResponse="filteredMovies"/>
     <h3>Movies</h3>
     <ul>
       <CardMovie v-for="movie in movies" :key="movie.id" :movie="movie" />
@@ -27,21 +27,38 @@ export default {
 },
   data() {
     return {
-      movies: [],
-      tvSeries: [],
+      originalMovies: [],
+      originalTvSeries: [],
       api_key: 'ab0c47b7b4ecf2838075c86d8541abac',
       api_URI: 'https://api.themoviedb.org/3',
       query: '',
+      posterBaseUri:'https://image.tmdb.org/t/p/'
+    }
+  },
+  computed: {
+    movies() {
+      return this.originalMovies.map((el) => {
+        const newMovie = {
+          id: el.id,
+          title: el.title,
+          original_title: el.original_title,
+          lang: el.original_language,
+          flag:'',
+          poster: `${this.posterBaseUri}w342${el.poster_path}`,
+          vote: Math.round(el.vote_average / 2)
+        }
+        return newMovie;
+      })
     }
   },
   methods: {
-    // filteredMovies(movies) {
-    //   this.movies = movies;
-    // },
-    filteredProgram(tvSeries,movies) {
-      this.tvSeries = tvSeries;
-      this.movies = movies;
-    }
+    filteredMovies(movies) {
+      this.originalMovies = movies;
+    },
+    // filteredProgram(tvSeries,movies) {
+    //   this.originalTvSeries = tvSeries;
+    //   this.originalMovies = movies;
+    // }
   }
 }
 </script>
@@ -50,6 +67,8 @@ export default {
 
 
 <style lang="scss">
+@import './style/style.scss';
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

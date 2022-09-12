@@ -22,6 +22,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+  .card {
+    border: 1px solid #dadada;
+  }
 </style>

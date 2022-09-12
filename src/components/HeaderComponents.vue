@@ -3,8 +3,8 @@
     <h1 id="name__app">
       Boolflix
     </h1>
-    <input type="text" v-model="query" placeholder="search" @keyup.enter="getTvSeries">
-    <input type="button" value="search" @click="getTvSeries">
+    <input type="text" v-model="query" placeholder="search" @keyup.enter="getMovies">
+    <input type="button" value="search" @click="getMovies">
   </div>
   
 </template>

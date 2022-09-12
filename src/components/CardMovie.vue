@@ -6,8 +6,9 @@
     <h5 class="original__title">
       {{ movie.original_title }}
     </h5>
-    <img :src="require(`../assets/${movie.original_language}.png`)" alt="">{{ movie.original_language }}
-    <p class="vote">{{ movie.vote_average }}</p>
+    <p class="language">{{ movie.lang }}</p>
+    <p class="vote">{{ movie.vote }}</p>
+    <img :src="movie.poster" alt="">
   </li>
 </template>
 
