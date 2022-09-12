@@ -3,8 +3,8 @@
     <h1 id="name__app">
       Boolflix
     </h1>
-    <input type="text" v-model="query" placeholder="search" @key.enter="getMovies">
-    <input type="button" value="search" @click="getMovies">
+    <input type="text" v-model="query" placeholder="search" @keyup.enter="getTvSeries">
+    <input type="button" value="search" @click="getTvSeries">
   </div>
   
 </template>
@@ -31,6 +31,18 @@ export default {
       .then(res => {
         console.log(res.data.results)
         this.$emit('onResponse', res.data.results);
+      })
+    },
+    getTvSeries() {
+      axios.get(`${this.api_URI}/search/tv`,{
+        params: {
+          api_key: this.api_key,
+          query: this.query.trim()
+        }
+      })
+      .then((res) => {
+        console.log(res.data.results)
+        this.$emit('onResponse',res.data.results);
       })
     },
   }

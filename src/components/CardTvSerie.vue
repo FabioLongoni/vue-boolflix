@@ -1,20 +1,20 @@
 <template>
   <li class="card">
     <h4 class="title">
-      {{ movie.title }}
+      {{ tvSerie.name }}
     </h4>
     <h5 class="original__title">
-      {{ movie.original_title }}
+      {{ tvSerie.original_name }}
     </h5>
-    <img :src="require(`../assets/${movie.original_language}.png`)" alt="">{{ movie.original_language }}
-    <p class="vote">{{ movie.vote_average }}</p>
+    <img :src="require(`../assets/${tvSerie.original_language}.png`)" alt="">{{ tvSerie.original_language }}
+    <p class="vote">{{ tvSerie.vote_average }}</p>
   </li>
 </template>
 
 <script>
 export default {
   props: {
-    movie: {
+    tvSerie: {
       type: Object,
       required: true
     }

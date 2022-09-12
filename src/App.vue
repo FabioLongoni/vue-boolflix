@@ -1,20 +1,30 @@
 <template>
   <div id="app">
-    <HeaderComponents @onResponse="filteredMovies"/>
-    <CardMovie v-for="movie in movies" :key="movie.id" :movie="movie" />
+    <HeaderComponents @onResponse="filteredProgram"/>
+    <h3>Movies</h3>
+    <ul>
+      <CardMovie v-for="movie in movies" :key="movie.id" :movie="movie" />
+    </ul>
+    <h3>tvSeries</h3>
+    <ul>
+      <CardTvSerie v-for="tvSerie in tvSeries" :key="tvSerie.id" :tvSerie="tvSerie"/>
+    </ul>
   </div>
+
 </template>
 
 <script>
 import HeaderComponents from './components/HeaderComponents.vue';
 import CardMovie from './components/CardMovie.vue';
+import CardTvSerie from './components/CardTvSerie.vue';
   
 export default {
   name: 'App',
   components: {
     HeaderComponents,
     CardMovie,
-  },
+    CardTvSerie
+},
   data() {
     return {
       movies: [],
@@ -25,21 +35,13 @@ export default {
     }
   },
   methods: {
-    filteredMovies(movies) {
-      this.movie = movies;
+    // filteredMovies(movies) {
+    //   this.movies = movies;
+    // },
+    filteredProgram(tvSeries,movies) {
+      this.tvSeries = tvSeries;
+      this.movies = movies;
     }
-    // getTvSeries() {
-    //   axios.get(`${this.api_URI}/search/tv`,{
-    //     params: {
-    //       api_key: this.api_key,
-    //       query: this.query
-    //     }
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data.results)
-    //     this.tvSeries = res.data.results;
-    //   })
-    // }
   }
 }
 </script>
@@ -54,5 +56,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   margin-top: 60px;
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 200px;
+    gap: 1rem;
+  }
 }
 </style>
