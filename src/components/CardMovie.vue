@@ -6,6 +6,7 @@
     <h5 class="original__title">
       {{ movie.original_title }}
     </h5>
+    <img :src="movie.flag" alt="">
     <p class="language">{{ movie.lang }}</p>
     <p class="vote">{{ movie.vote }}</p>
     <img :src="movie.poster" alt="">

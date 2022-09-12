@@ -43,7 +43,7 @@ export default {
           title: el.title,
           original_title: el.original_title,
           lang: el.original_language,
-          flag:'',
+          flag:`./assets/${el.original_language}.png`,
           poster: `${this.posterBaseUri}w342${el.poster_path}`,
           vote: Math.round(el.vote_average / 2)
         }
