@@ -1,61 +1,47 @@
 <template>
   <div id="app">
-    <ul>
-      <li v-for="movie in movies" :key="movie.id">
-        {{ movie.original_title }}
-      </li>
-      <li v-for="serie in tvSeries" :key="serie.id">
-        {{ serie.name}}
-      </li>
-    </ul>
+    <HeaderComponents @onResponse="filteredMovies"/>
+    <CardMovie v-for="movie in movies" :key="movie.id" :movie="movie" />
   </div>
 </template>
 
 <script>
-  import axios from 'axios';
+import HeaderComponents from './components/HeaderComponents.vue';
+import CardMovie from './components/CardMovie.vue';
   
-  export default {
-    name: 'App',
-    data() {
-      return {
-        movies: [],
-        tvSeries: [],
-        api_key: 'ab0c47b7b4ecf2838075c86d8541abac',
-        query: 'pippo',
-        api_URI: 'https://api.themoviedb.org/3'
-      }
-    },
-    methods: {
-      getMovies() {
-        axios.get(`${this.api_URI}/search/movie`,{
-          params: {
-            api_key: this.api_key,
-            query: this.query
-          }
-        })
-        .then((res) => {
-          console.log(res.data.results)
-          this.movies = res.data.results;
-        })
-      },
-      getTvSeries() {
-        axios.get(`${this.api_URI}/search/tv`,{
-          params: {
-            api_key: this.api_key,
-            query: this.query
-          }
-        })
-        .then((res) => {
-          console.log(res.data.results)
-          this.tvSeries = res.data.results;
-        })
-      }
-    },
-    beforeMount() {
-      this.getMovies()
-      this.getTvSeries()
+export default {
+  name: 'App',
+  components: {
+    HeaderComponents,
+    CardMovie,
+  },
+  data() {
+    return {
+      movies: [],
+      tvSeries: [],
+      api_key: 'ab0c47b7b4ecf2838075c86d8541abac',
+      api_URI: 'https://api.themoviedb.org/3',
+      query: '',
     }
+  },
+  methods: {
+    filteredMovies(movies) {
+      this.movie = movies;
+    }
+    // getTvSeries() {
+    //   axios.get(`${this.api_URI}/search/tv`,{
+    //     params: {
+    //       api_key: this.api_key,
+    //       query: this.query
+    //     }
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data.results)
+    //     this.tvSeries = res.data.results;
+    //   })
+    // }
   }
+}
 </script>
 
 
@@ -66,7 +52,6 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
