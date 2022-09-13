@@ -1,12 +1,15 @@
 <template>
-  <div id="header__components">
+  <div class="container">
+    <div id="header__components">
     <h1 id="name__app">
       Boolflix
     </h1>
-    <input type="text" v-model="query" placeholder="search" @keyup.enter="getBoth">
-    <input type="button" value="search" @click="getBoth">
+    <div class="input">
+      <input type="text" v-model="query" placeholder="search" @keyup.enter="getBoth">
+      <input type="button" value="search" @click="getBoth">
+    </div>
   </div>
-  
+  </div>
 </template>
 
 <script>
@@ -57,6 +60,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss"  scoped>
+@import '../style/HeaderComponents';
 
 </style>

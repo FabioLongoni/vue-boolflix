@@ -1,0 +1,31 @@
+.card {
+  position: relative;
+  .bg {
+    max-width: 100%;
+  }
+  .content_card {
+    position: absolute;
+    padding: 2rem 0.5rem;
+    display: none;
+    color: white;
+  }
+}
+
+.card::after {
+  content:"" ;
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.card:hover::after {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.card:hover .content_card {
+  display: block;
+  z-index: 1;
+}

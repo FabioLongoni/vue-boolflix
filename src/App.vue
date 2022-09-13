@@ -3,11 +3,11 @@
     <HeaderComponents @onResponseMovies="filteredMovies" @onResponseTvSeries="filteredTvSeries" />
     <h3>Movies</h3>
     <ul>
-      <CardMovie v-for="movie in movies" :key="movie.id" :movie="movie" />
+      <Card v-for="movie in movies" :key="movie.id" :el="movie" />
     </ul>
     <h3>tvSeries</h3>
     <ul>
-      <CardTvSerie v-for="tvSerie in tvSeries" :key="tvSerie.id" :tvSerie="tvSerie"/>
+      <Card v-for="tvSerie in tvSeries" :key="tvSerie.id" :el="tvSerie"/>
     </ul>
   </div>
 
@@ -15,18 +15,18 @@
 
 <script>
 import HeaderComponents from './components/HeaderComponents.vue';
-import CardMovie from './components/CardMovie.vue';
-import CardTvSerie from './components/CardTvSerie.vue';
+import Card from './components/CardComponent.vue';
+import "@fontsource/montserrat";
   
 export default {
   name: 'App',
   components: {
     HeaderComponents,
-    CardMovie,
-    CardTvSerie
+    Card
 },
   data() {
     return {
+      flags: ['au','en','it','es','de','rs','us','jp','fr','ru'],
       originalMovies: [],
       originalTvSeries: [],
       api_key: 'ab0c47b7b4ecf2838075c86d8541abac',
@@ -43,9 +43,10 @@ export default {
           title: el.title,
           original_title: el.original_title,
           lang: el.original_language,
-          flag:`@/assets/${el.original_language}.png`,
-          poster: `${this.posterBaseUri}w342${el.poster_path}`,
-          vote: Math.round(el.vote_average / 2)
+          flag: this.flags.includes(el.original_language) ? require(`@/assets/${el.original_language}.png`) : null,
+          poster:`${this.posterBaseUri}w342${el.poster_path}`,
+          vote: Math.round(el.vote_average / 2),
+          overview: el.overview
         }
         return newMovie;
       })
@@ -54,12 +55,13 @@ export default {
       return this.originalTvSeries.map((el) => {
         const newTvSeries = {
           id: el.id,
-          name: el.name,
-          original_name: el.original_name,
+          title: el.name,
+          original_title: el.original_name,
           lang: el.original_language,
-          flag:`@/assets/${el.original_language}.png`,
+          flag: this.flags.includes(el.original_language) ? require(`@/assets/${el.original_language}.png`) : null,
           poster: `${this.posterBaseUri}w342${el.poster_path}`,
-          vote: Math.round(el.vote_average / 2)
+          vote: Math.round(el.vote_average / 2),
+          overview: el.overview
         }
         return newTvSeries;
       })
@@ -82,17 +84,5 @@ export default {
 <style lang="scss">
 @import './style/style.scss';
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 60px;
-  ul {
-    display: flex;
-    flex-wrap: wrap;
-    flex-basis: 200px;
-    gap: 1rem;
-  }
-}
+
 </style>

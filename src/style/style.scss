@@ -1,3 +1,19 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+#app {
+  font-family: "Montserrat", sans-serif;
+  color: #2c3e50;
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 200px;
+    gap: 1rem;
+  }
+}
 
 ul,
 li,
