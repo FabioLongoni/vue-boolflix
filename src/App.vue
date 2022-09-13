@@ -1,14 +1,16 @@
 <template>
   <div id="app">
     <HeaderComponents @onResponseMovies="filteredMovies" @onResponseTvSeries="filteredTvSeries" />
-    <h3>Movies</h3>
-    <ul>
-      <Card v-for="movie in movies" :key="movie.id" :el="movie" />
-    </ul>
-    <h3>tvSeries</h3>
-    <ul>
-      <Card v-for="tvSerie in tvSeries" :key="tvSerie.id" :el="tvSerie"/>
-    </ul>
+    <div class="main__container">
+      <h3>Movies :</h3>
+      <ul>
+        <Card v-for="movie in movies" :key="movie.id" :el="movie" />
+      </ul>
+      <h3>Tv Series :</h3>
+      <ul>
+        <Card v-for="tvSerie in tvSeries" :key="tvSerie.id" :el="tvSerie"/>
+      </ul>
+    </div>
   </div>
 
 </template>

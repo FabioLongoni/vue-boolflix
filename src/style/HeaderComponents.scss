@@ -2,9 +2,17 @@
 .container {
   padding: 1rem 2rem; 
   background-color: #1b1b1b;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 999;
   #header__components {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    #name__app{
+      color: #e4131a;
+      font-weight: 600;
+    }
   } 
 }

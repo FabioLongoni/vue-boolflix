@@ -2,7 +2,7 @@
   <div class="container">
     <div id="header__components">
     <h1 id="name__app">
-      Boolflix
+      BoolFlix
     </h1>
     <div class="input">
       <input type="text" v-model="query" placeholder="search" @keyup.enter="getBoth">
