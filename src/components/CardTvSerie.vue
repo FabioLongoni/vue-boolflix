@@ -6,8 +6,10 @@
     <h5 class="original__title">
       {{ tvSerie.original_name }}
     </h5>
-    <img :src="require(`../assets/${tvSerie.original_language}.png`)" alt="">{{ tvSerie.original_language }}
+    <img class="flag" :src="tvSerie.flag" alt="">
+    <p class="language">{{ tvSerie.lang }}</p>
     <p class="vote">{{ tvSerie.vote_average }}</p>
+    <img :src="tvSerie.poster" alt="">
   </li>
 </template>
 

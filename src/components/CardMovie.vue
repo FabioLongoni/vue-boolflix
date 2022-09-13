@@ -6,7 +6,8 @@
     <h5 class="original__title">
       {{ movie.original_title }}
     </h5>
-    <img :src="movie.flag" alt="">
+    <img class="flag" :src="movie.flag" alt="">
+    <!-- <img class="flag" src="../assets/it.png" alt=""> -->
     <p class="language">{{ movie.lang }}</p>
     <p class="vote">{{ movie.vote }}</p>
     <img :src="movie.poster" alt="">
@@ -24,6 +25,12 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+  .card {
+    border: 1px solid #dadada;
+  }
+  .flag {
+    width: 100px;
+  }
+  
 </style>

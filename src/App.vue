@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HeaderComponents @onResponse="filteredMovies"/>
+    <HeaderComponents @onResponseMovies="filteredMovies" @onResponseTvSeries="filteredTvSeries" />
     <h3>Movies</h3>
     <ul>
       <CardMovie v-for="movie in movies" :key="movie.id" :movie="movie" />
@@ -43,11 +43,25 @@ export default {
           title: el.title,
           original_title: el.original_title,
           lang: el.original_language,
-          flag:`./assets/${el.original_language}.png`,
+          flag:`@/assets/${el.original_language}.png`,
           poster: `${this.posterBaseUri}w342${el.poster_path}`,
           vote: Math.round(el.vote_average / 2)
         }
         return newMovie;
+      })
+    },
+    tvSeries() {
+      return this.originalTvSeries.map((el) => {
+        const newTvSeries = {
+          id: el.id,
+          name: el.name,
+          original_name: el.original_name,
+          lang: el.original_language,
+          flag:`@/assets/${el.original_language}.png`,
+          poster: `${this.posterBaseUri}w342${el.poster_path}`,
+          vote: Math.round(el.vote_average / 2)
+        }
+        return newTvSeries;
       })
     }
   },
@@ -55,10 +69,9 @@ export default {
     filteredMovies(movies) {
       this.originalMovies = movies;
     },
-    // filteredProgram(tvSeries,movies) {
-    //   this.originalTvSeries = tvSeries;
-    //   this.originalMovies = movies;
-    // }
+    filteredTvSeries(tvSeries) {
+      this.originalTvSeries = tvSeries;
+    },
   }
 }
 </script>
