@@ -34,7 +34,9 @@ export default {
       api_key: 'ab0c47b7b4ecf2838075c86d8541abac',
       api_URI: 'https://api.themoviedb.org/3',
       query: '',
-      posterBaseUri:'https://image.tmdb.org/t/p/'
+      posterBaseUri:'https://image.tmdb.org/t/p/',
+      placeholder_image: 'https://picsum.photos/342/517',
+      overviewDefault: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic'
     }
   },
   computed: {
@@ -46,9 +48,9 @@ export default {
           original_title: el.original_title,
           lang: el.original_language,
           flag: this.flags.includes(el.original_language) ? require(`@/assets/${el.original_language}.png`) : null,
-          poster:`${this.posterBaseUri}w342${el.poster_path}`,
+          poster: this.fullPosterPath(el.poster_path),
           vote: Math.round(el.vote_average / 2),
-          overview: el.overview
+          overview: this.getOverview(el.overview)
         }
         return newMovie;
       })
@@ -61,9 +63,9 @@ export default {
           original_title: el.original_name,
           lang: el.original_language,
           flag: this.flags.includes(el.original_language) ? require(`@/assets/${el.original_language}.png`) : null,
-          poster: `${this.posterBaseUri}w342${el.poster_path}`,
+          poster: this.fullPosterPath(el.poster_path),
           vote: Math.round(el.vote_average / 2),
-          overview: el.overview
+          overview: this.getOverview(el.overview)
         }
         return newTvSeries;
       })
@@ -76,6 +78,18 @@ export default {
     filteredTvSeries(tvSeries) {
       this.originalTvSeries = tvSeries;
     },
+    fullPosterPath(poster_path) {
+      if(poster_path) {
+        return `${this.posterBaseUri}w342${poster_path}`
+      }
+      return `${this.placeholder_image}`
+    },
+    getOverview(overview) {
+      if(overview) {
+        return overview;
+      }
+      return `${this.overviewDefault}`
+    } 
   }
 }
 </script>

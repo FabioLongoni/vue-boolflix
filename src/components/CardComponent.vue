@@ -12,8 +12,8 @@
         <font-awesome-icon class="star__icon" v-for="n in el.vote" :key="n" icon="fa-solid fa-star" />
         <font-awesome-icon class="star__icon" v-for="n in (5 - el.vote)" :key="n + el.vote" icon="fa-regular fa-star" /> 
       </div>
-      <div>
-        <strong>Overview :</strong> {{el.overview}}
+      <div class="overview">
+        <strong>Overview :</strong> {{el.overview }}
       </div>
     </div>
     <img class="bg" v-if="el.poster" :src="el.poster" alt="">

@@ -1,17 +1,24 @@
 .card {
   position: relative;
+  overflow: hidden;
   .bg {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
   .content_card {
-    overflow: hidden;
     position: absolute;
+    height: 100%;
     padding: 2rem 0.5rem;
     display: none;
     color: white;
     .star__icon {
       color: yellow;
     }
+  }
+  img {
+    height: 493px;
   }
 }
 
@@ -34,4 +41,8 @@
   flex-direction: column;
   gap: 0.75rem;
   z-index: 1;
+  .overview {
+    flex-grow: 1;
+    overflow: auto;
+  }
 }

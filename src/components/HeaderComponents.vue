@@ -5,8 +5,8 @@
       BoolFlix
     </h1>
     <div class="input">
-      <input type="text" v-model="query" placeholder="search" @keyup.enter="getBoth">
-      <input type="button" value="search" @click="getBoth">
+      <input class="text" type="text" v-model="query" placeholder="search" @keyup.enter="getBoth">
+      <input class="btn" type="button" value="search" @click="getBoth">
     </div>
   </div>
   </div>
